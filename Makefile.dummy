@@ -1,0 +1,9 @@
+libdispatch.a:	once_dummy.o
+	emar rcs libdispatch.a once_dummy.o
+
+once_dummy.o:
+	emcc -x objective-c -s ASSERTIONS=0 -s DEMANGLE_SUPPORT=1 -fobjc-runtime=macosx -fblocks -c -I. -o once_dummy.o once_dummy.c
+
+install: libdispatch.a
+	cp libdispatch.a $(EMSCRIPTEN)/system/local/lib/
+	cp -R dispatch $(EMSCRIPTEN)/system/local/include/
