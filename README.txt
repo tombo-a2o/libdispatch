@@ -1,4 +1,10 @@
 How to build on emscripten
+==========================
+
+cd {somewhere}
+git clone git@github.com:tomboinc/libdispatch.git
+cd libdispatch
+git checkout feature/emscripten
 
 autoreconf -i
 emconfigure ./configure
