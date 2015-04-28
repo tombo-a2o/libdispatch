@@ -245,8 +245,6 @@ AC_CHECK_HEADERS([sys/cdefs.h], [], [],
    #include <sys/cdefs.h>
    #endif])
 
-DISPATCH_C_BLOCKS
-
 AC_CACHE_CHECK([for -fvisibility=hidden], [dispatch_cv_cc_visibility_hidden], [
   saveCFLAGS="$CFLAGS"
   CFLAGS="$CFLAGS -fvisibility=hidden"
