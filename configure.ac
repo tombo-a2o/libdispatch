@@ -237,7 +237,7 @@ AS_IF([test "x$have_mach" = "xtrue"],
   [test "x$have_sem_init" = "xtrue"],
   [AC_DEFINE(USE_POSIX_SEM, 1, [Define to use POSIX semaphores])
     AC_MSG_RESULT([POSIX semaphores])],
-  [AC_MSG_ERROR([no supported semaphore type])]
+  [AC_MSG_RESULT([no supported semaphore type, but skip for emscripten])]
 )
 
 AC_CHECK_HEADERS([sys/cdefs.h], [], [],
