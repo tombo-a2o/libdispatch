@@ -49,7 +49,7 @@ void dispatch_barrier_async(dispatch_queue_t queue, void (^block)(void)) {
 }
 
 void * dispatch_get_specific(const void *key) {
-    dispatch_queue_get_specific(dispatch_get_current_queue(), key);
+    return dispatch_queue_get_specific(dispatch_get_current_queue(), key);
 }
         
 // Implemented by js native

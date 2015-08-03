@@ -64,7 +64,7 @@
  * reference to the queue until they have finished. Once all references to a
  * queue have been released, the queue will be deallocated by the system.
  */
-DISPATCH_DECL(dispatch_queue);
+typedef uint32_t dispatch_queue_t;
 
 __BEGIN_DECLS
 
@@ -300,9 +300,6 @@ DISPATCH_EXPORT DISPATCH_PURE DISPATCH_WARN_RESULT DISPATCH_NOTHROW
 dispatch_queue_t
 dispatch_get_current_queue(void);
 
-__OSX_AVAILABLE_STARTING(__MAC_10_6,__IPHONE_4_0)
-DISPATCH_EXPORT struct dispatch_queue_s _dispatch_main_q;
-
 /*!
  * @function dispatch_get_main_queue
  *
@@ -322,7 +319,7 @@ DISPATCH_INLINE DISPATCH_ALWAYS_INLINE DISPATCH_CONST DISPATCH_NOTHROW
 dispatch_queue_t
 dispatch_get_main_queue(void)
 {
-	return DISPATCH_GLOBAL_OBJECT(dispatch_queue_t, _dispatch_main_q);
+	return 1;
 }
 
 /*!
@@ -421,25 +418,20 @@ dispatch_get_global_queue(long identifier, unsigned long flags);
  * @abstract
  * Attribute for dispatch queues.
  */
-DISPATCH_DECL(dispatch_queue_attr);
+typedef uint32_t dispatch_queue_attr_t;
 
 /*!
  * @const DISPATCH_QUEUE_SERIAL
  * @discussion A dispatch queue that invokes blocks serially in FIFO order.
  */
-#define DISPATCH_QUEUE_SERIAL NULL
+#define DISPATCH_QUEUE_SERIAL (0)
 
 /*!
  * @const DISPATCH_QUEUE_CONCURRENT
  * @discussion A dispatch queue that may invoke blocks concurrently and supports
  * barrier blocks submitted with the dispatch barrier API.
  */
-#define DISPATCH_QUEUE_CONCURRENT \
-		DISPATCH_GLOBAL_OBJECT(dispatch_queue_attr_t, \
-		_dispatch_queue_attr_concurrent)
-__OSX_AVAILABLE_STARTING(__MAC_10_7,__IPHONE_4_3)
-DISPATCH_EXPORT
-struct dispatch_queue_attr_s _dispatch_queue_attr_concurrent;
+#define DISPATCH_QUEUE_CONCURRENT (1)
 
 /*!
  * @function dispatch_queue_attr_make_with_qos_class
@@ -541,7 +533,7 @@ dispatch_queue_attr_make_with_qos_class(dispatch_queue_attr_t attr,
  * The newly created dispatch queue.
  */
 __OSX_AVAILABLE_STARTING(__MAC_10_6,__IPHONE_4_0)
-DISPATCH_EXPORT DISPATCH_MALLOC DISPATCH_RETURNS_RETAINED DISPATCH_WARN_RESULT
+DISPATCH_EXPORT DISPATCH_RETURNS_RETAINED DISPATCH_WARN_RESULT
 DISPATCH_NOTHROW
 dispatch_queue_t
 dispatch_queue_create(const char *label, dispatch_queue_attr_t attr);
@@ -686,7 +678,7 @@ dispatch_set_target_queue(dispatch_object_t object, dispatch_queue_t queue);
  * main thread do not need to call dispatch_main().
  */
 __OSX_AVAILABLE_STARTING(__MAC_10_6,__IPHONE_4_0)
-DISPATCH_EXPORT DISPATCH_NOTHROW DISPATCH_NORETURN
+DISPATCH_EXPORT DISPATCH_NOTHROW
 void
 dispatch_main(void);
 
