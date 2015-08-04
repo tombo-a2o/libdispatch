@@ -1,5 +1,5 @@
 CC=emcc
-CFLAGS=-lBlocksRuntime -ldispatch -fblocks
+CFLAGS=-lBlocksRuntime -ldispatch -fblocks -s NATIVE_LIBDISPATCH=1
 
 async.js:	async.c
 
