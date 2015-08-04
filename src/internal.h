@@ -27,3 +27,8 @@
 dispatch_block_t _dispatch_Block_copy(dispatch_block_t block);
 #define _dispatch_Block_copy(x) ((typeof(x))_dispatch_Block_copy(x))
 void _dispatch_call_block_and_release(void *block);
+
+struct dispatch_queue_s {
+    uint32_t queue_id;
+};
+

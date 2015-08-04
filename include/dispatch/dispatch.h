@@ -21,7 +21,7 @@
 #ifndef __DISPATCH_PUBLIC__
 #define __DISPATCH_PUBLIC__
 
-#ifdef __APPLE__
+#if defined(__APPLE__) || defined(EMSCRIPTEN)
 #include <Availability.h>
 #include <TargetConditionals.h>
 #endif

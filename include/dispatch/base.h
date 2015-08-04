@@ -28,14 +28,19 @@
 #if __GNUC__
 #define DISPATCH_NORETURN __attribute__((__noreturn__))
 #define DISPATCH_NOTHROW __attribute__((__nothrow__))
-#define DISPATCH_NONNULL1
-#define DISPATCH_NONNULL2
-#define DISPATCH_NONNULL3
-#define DISPATCH_NONNULL4
-#define DISPATCH_NONNULL5
-#define DISPATCH_NONNULL6
-#define DISPATCH_NONNULL7
+#define DISPATCH_NONNULL1 __attribute__((__nonnull__(1)))
+#define DISPATCH_NONNULL2 __attribute__((__nonnull__(2)))
+#define DISPATCH_NONNULL3 __attribute__((__nonnull__(3)))
+#define DISPATCH_NONNULL4 __attribute__((__nonnull__(4)))
+#define DISPATCH_NONNULL5 __attribute__((__nonnull__(5)))
+#define DISPATCH_NONNULL6 __attribute__((__nonnull__(6)))
+#define DISPATCH_NONNULL7 __attribute__((__nonnull__(7)))
+#if __clang__ && __clang_major__ < 3
+// rdar://problem/6857843
 #define DISPATCH_NONNULL_ALL
+#else
+#define DISPATCH_NONNULL_ALL __attribute__((__nonnull__))
+#endif
 #define DISPATCH_SENTINEL __attribute__((__sentinel__))
 #define DISPATCH_PURE __attribute__((__pure__))
 #define DISPATCH_CONST __attribute__((__const__))
