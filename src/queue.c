@@ -1,6 +1,4 @@
 #include "internal.h"
-#include <emscripten.h>
-#include <malloc/malloc.h>
 
 void dispatch_async(dispatch_queue_t queue, void (^block)(void)) {
     dispatch_async_f(queue, _dispatch_Block_copy(block), _dispatch_call_block_and_release);

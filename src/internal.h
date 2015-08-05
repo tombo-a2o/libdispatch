@@ -7,6 +7,8 @@
 #include <stddef.h>
 #include <sys/types.h>
 #include <assert.h>
+#include <emscripten.h>
+#include <malloc/malloc.h>
 
 #define __DISPATCH_BUILDING_DISPATCH__
 #define __DISPATCH_INDIRECT__
