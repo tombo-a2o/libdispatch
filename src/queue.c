@@ -47,7 +47,7 @@ uint32_t _dispatch_queue_create_internal(const char *label);
 
 dispatch_queue_t dispatch_queue_create(const char *label, dispatch_queue_attr_t attr) {
     // ignore attr
-    struct dispatch_queue_s *ret = (dispatch_queue_t) malloc(sizeof(struct dispatch_queue_s));
+    struct dispatch_queue_s *ret = (dispatch_queue_t) malloc(sizeof(struct dispatch_queue_s)); // will leak!
     ret->queue_id = _dispatch_queue_create_internal(label);
     return ret;
 }

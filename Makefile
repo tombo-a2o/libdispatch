@@ -1,5 +1,5 @@
 SOURCES = $(wildcard src/*.c)
-PRIVATE_HEADERS = $(wildcard private-include/*.h)
+PRIVATE_HEADERS = $(wildcard src/*.h)
 PUBLIC_HEADERS = $(wildcard include/**/*.h)
 HEADERS = $(PUBLIC_HEADERS) $(PRIVATE_HEADERS)
 
