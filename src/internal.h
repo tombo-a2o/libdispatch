@@ -11,9 +11,12 @@
 #include <assert.h>
 #include <emscripten.h>
 #include <malloc/malloc.h>
+#include <os/object.h>
 
 #define __DISPATCH_BUILDING_DISPATCH__
 #define __DISPATCH_INDIRECT__
+#define OS_OBJECT_HAVE_OBJC_SUPPORT 1
+#define OS_OBJECT_USE_OBJC 1
 
 #include <dispatch/base.h>
 #include <dispatch/time.h>
@@ -51,14 +54,29 @@ static inline uint64_t _dispatch_absolute_time(void)
     return (ts.tv_sec * NSEC_PER_SEC + ts.tv_nsec);
 }
 
+@interface DispatchQueue : NSObject<OS_dispatch_queue> {
+    @public
+    uint32_t queue_id;
+}
+@end
+
 struct dispatch_queue_s {
+    id isa;
     uint32_t queue_id;
 };
 
+@interface DispatchSource : NSObject<OS_dispatch_source> {
+    @public
+    uint32_t source_id;
+}
+@end
+
 struct dispatch_source_s {
+    id isa;
     uint32_t source_id;
 };
 
 struct dispatch_source_type_s {
+    id isa;
     uint32_t internal_type;
 };

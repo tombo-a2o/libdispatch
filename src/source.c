@@ -1,8 +1,11 @@
 #include "internal.h"
 
+@implementation DispatchSource @end
+
 #define SOURCE_INTERNAL_TYPE_TIMER 1
 
 const struct dispatch_source_type_s _dispatch_source_type_timer = {
+    .isa = NULL, // TODO
     .internal_type = SOURCE_INTERNAL_TYPE_TIMER
 };
 
@@ -16,7 +19,7 @@ dispatch_source_t dispatch_source_create(dispatch_source_type_t type, uintptr_t 
         // unimplemented
         assert(0);
     }
-    dispatch_source_t source = malloc(sizeof(struct dispatch_source_s)); // will leak!
+    DispatchSource *source = [[DispatchSource alloc] init];
     source->source_id = _dispatch_source_create_internal(internal_type, handle, mask, queue);
     return source;
 }
