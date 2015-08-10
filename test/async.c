@@ -3,7 +3,7 @@
 
 int main(int argc, char* argv[]) {
     __block int i = 100;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    dispatch_async(dispatch_get_main_queue(), ^{
         printf("hoge %d\n", i);
     });
     printf("fuga\n");
