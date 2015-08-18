@@ -75,6 +75,10 @@ void dispatch_barrier_async(dispatch_queue_t queue, void (^block)(void)) {
     dispatch_barrier_async_f(queue, _dispatch_Block_copy(block), _dispatch_call_block_and_release);
 }
 
+void dispatch_barrier_sync(dispatch_queue_t queue, void (^block)(void)) {
+    dispatch_barrier_sync_f(queue, _dispatch_Block_copy(block), _dispatch_call_block_and_release);
+}
+
 void * dispatch_get_specific(const void *key) {
     return dispatch_queue_get_specific(dispatch_get_current_queue(), key);
 }

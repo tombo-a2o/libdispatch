@@ -80,3 +80,14 @@ struct dispatch_source_type_s {
     id isa;
     uint32_t internal_type;
 };
+
+@interface DispatchGroup : NSObject<OS_dispatch_group> {
+    @public
+    uint32_t group_id;
+}
+@end
+
+struct dispatch_group_s {
+    id isa;
+    uint32_t group_id;
+};
