@@ -21,20 +21,14 @@ struct dispatch_queue_s background_queue = {
     .queue_id = 1,
 };
 
+#define QUEUE_MAX 1024
+static dispatch_queue_t _queue_table[QUEUE_MAX] = {&_dispatch_main_q, &background_queue};
+
 extern uint32_t _dispatch_get_current_queue_id(void);
 
 dispatch_queue_t dispatch_get_current_queue(void) {
     uint32_t queue_id = _dispatch_get_current_queue_id();
-    switch(queue_id) {
-    case 0:
-        return (dispatch_queue_t)&_dispatch_main_q;
-        break;
-    case 1:
-        return (dispatch_queue_t)&background_queue;
-        break;
-    default:
-        assert(0);
-    }
+    return _queue_table[queue_id];
 }
 
 dispatch_queue_t dispatch_get_global_queue(dispatch_queue_priority_t priority, unsigned long flags) {
@@ -55,6 +49,7 @@ dispatch_queue_t dispatch_queue_create(const char *label, dispatch_queue_attr_t 
     // ignore attr
     DispatchQueue *queue = [[DispatchQueue alloc] init];
     queue->queue_id = _dispatch_queue_create_internal(label);
+    _queue_table[queue->queue_id] = queue;
     return queue;
 }
 
