@@ -32,7 +32,6 @@ dispatch_queue_t dispatch_get_current_queue(void) {
 }
 
 dispatch_queue_t dispatch_get_global_queue(dispatch_queue_priority_t priority, unsigned long flags) {
-    assert(flags == 0);
     switch(priority) {
     case DISPATCH_QUEUE_PRIORITY_HIGH:
     case DISPATCH_QUEUE_PRIORITY_DEFAULT:
