@@ -58,7 +58,10 @@ static inline uint64_t _dispatch_absolute_time(void)
     @public
     uint32_t object_id;
     uint32_t suspend_cnt;
+    void *_context;
+    dispatch_function_t _finalizer;
 }
+-(void)dealloc;
 @end
 
 @interface DispatchQueue : DispatchObject<OS_dispatch_queue> @end
