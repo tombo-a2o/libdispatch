@@ -10,15 +10,15 @@ void dispatch_sync(dispatch_queue_t queue, dispatch_block_t block) {
     dispatch_sync_f(queue, _dispatch_Block_copy(block), _dispatch_call_block_and_release);
 }
 
-extern struct objc_class OBJC_CLASS_$_NSObject;
+extern struct objc_class OBJC_CLASS_$_DispatchQueue;
 
 struct dispatch_queue_s _dispatch_main_q = {
-    .isa = &OBJC_CLASS_$_NSObject, // TODO
-    .queue_id = 0,
+    .isa = &OBJC_CLASS_$_DispatchQueue, // TODO
+    .object_id = 0,
 };
 struct dispatch_queue_s background_queue = {
-    .isa = &OBJC_CLASS_$_NSObject, // TODO
-    .queue_id = 1,
+    .isa = &OBJC_CLASS_$_DispatchQueue, // TODO
+    .object_id = 1,
 };
 
 #define QUEUE_MAX 1024
@@ -47,8 +47,8 @@ uint32_t _dispatch_queue_create_internal(const char *label);
 dispatch_queue_t dispatch_queue_create(const char *label, dispatch_queue_attr_t attr) {
     // ignore attr
     DispatchQueue *queue = [[DispatchQueue alloc] init];
-    queue->queue_id = _dispatch_queue_create_internal(label);
-    _queue_table[queue->queue_id] = queue;
+    queue->object_id = _dispatch_queue_create_internal(label);
+    _queue_table[queue->object_id] = queue;
     return queue;
 }
 

@@ -20,7 +20,7 @@ dispatch_source_t dispatch_source_create(dispatch_source_type_t type, uintptr_t 
         assert(0);
     }
     DispatchSource *source = [[DispatchSource alloc] init];
-    source->source_id = _dispatch_source_create_internal(internal_type, handle, mask, queue);
+    source->object_id = _dispatch_source_create_internal(internal_type, handle, mask, queue);
     return source;
 }
 

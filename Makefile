@@ -20,7 +20,7 @@ all: $(STATIC_LIB)
 
 vpath %.c src
 
-$(BUILD)/%.o: %.c
+$(BUILD)/%.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -o $@ $<
 
 $(LIB): $(HEADERS) $(OBJS)

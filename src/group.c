@@ -6,7 +6,7 @@ uint32_t _dispatch_group_create_internal(void);
 
 dispatch_group_t dispatch_group_create(void) {
     DispatchGroup *group = [[DispatchGroup alloc] init];
-    group->group_id = _dispatch_group_create_internal();
+    group->object_id = _dispatch_group_create_internal();
     return group;
 }
 

@@ -54,26 +54,27 @@ static inline uint64_t _dispatch_absolute_time(void)
     return (ts.tv_sec * NSEC_PER_SEC + ts.tv_nsec);
 }
 
-@interface DispatchQueue : NSObject<OS_dispatch_queue> {
+@interface DispatchObject : NSObject<OS_dispatch_object> {
     @public
-    uint32_t queue_id;
+    uint32_t object_id;
+    uint32_t suspend_cnt;
 }
 @end
+
+@interface DispatchQueue : DispatchObject<OS_dispatch_queue> @end
 
 struct dispatch_queue_s {
     id isa;
-    uint32_t queue_id;
+    uint32_t object_id;
+    uint32_t suspend_cnt;
 };
 
-@interface DispatchSource : NSObject<OS_dispatch_source> {
-    @public
-    uint32_t source_id;
-}
-@end
+@interface DispatchSource : DispatchObject<OS_dispatch_source> @end
 
 struct dispatch_source_s {
     id isa;
-    uint32_t source_id;
+    uint32_t object_id;
+    uint32_t suspend_cnt;
 };
 
 struct dispatch_source_type_s {
@@ -81,13 +82,10 @@ struct dispatch_source_type_s {
     uint32_t internal_type;
 };
 
-@interface DispatchGroup : NSObject<OS_dispatch_group> {
-    @public
-    uint32_t group_id;
-}
-@end
+@interface DispatchGroup : DispatchObject<OS_dispatch_group> @end
 
 struct dispatch_group_s {
     id isa;
-    uint32_t group_id;
+    uint32_t object_id;
+    uint32_t suspend_cnt;
 };
