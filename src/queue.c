@@ -10,6 +10,17 @@ void dispatch_sync(dispatch_queue_t queue, dispatch_block_t block) {
     dispatch_sync_f(queue, _dispatch_Block_copy(block), _dispatch_call_block_and_release);
 }
 
+void _dispatch_apply_block_call(void *block, size_t i) {
+    void (^b)(size_t) = block;
+    b(i);
+}
+
+void dispatch_apply(size_t iterations, dispatch_queue_t queue, void (^block)(size_t)) {
+    Block_copy(block);
+    dispatch_apply_f(iterations, queue, block, _dispatch_apply_block_call);
+    Block_release(block);
+}
+
 extern struct objc_class OBJC_CLASS_$_DispatchQueue;
 
 struct dispatch_queue_s _dispatch_main_q = {
