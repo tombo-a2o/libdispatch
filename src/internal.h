@@ -11,12 +11,13 @@
 #include <assert.h>
 #include <emscripten.h>
 #include <malloc/malloc.h>
-#include <os/object.h>
 
 #define __DISPATCH_BUILDING_DISPATCH__
 #define __DISPATCH_INDIRECT__
 #define OS_OBJECT_HAVE_OBJC_SUPPORT 1
 #define OS_OBJECT_USE_OBJC 1
+
+#include <os/object.h>
 
 #include <dispatch/base.h>
 #include <dispatch/time.h>
