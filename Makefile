@@ -12,7 +12,7 @@ OBJS = $(patsubst src/%, $(BUILD)/%, $(patsubst %.c,%.o,$(SOURCES)))
 CC = emcc
 CXX = em++
 LINK = emar
-CFLAGS = -O0 -I./include -I./private-include -I./src -fblocks -x objective-c -fobjc-runtime=ios -D__IPHONE_OS_VERSION_MIN_REQUIRED=70000
+CFLAGS = -O0 -I./include -I./private-include -I./src -fblocks -x objective-c -fobjc-runtime=ios -D__IPHONE_OS_VERSION_MIN_REQUIRED=70000 $(OPT_CFLAGS)
 
 .SUFFIXES: .c .o
 
