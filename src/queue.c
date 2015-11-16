@@ -1,4 +1,5 @@
 #include "internal.h"
+#include <emscripten/trace.h>
 
 @implementation DispatchQueue @end
 
@@ -64,9 +65,16 @@ dispatch_queue_t dispatch_queue_create(const char *label, dispatch_queue_attr_t 
 }
 
 extern void _dispatch_em_handle_queue(void);
+static void _dispatch_em_handle_queue_with_autoreleasepool(void) {
+    emscripten_trace_record_frame_start();
+    @autoreleasepool {
+        _dispatch_em_handle_queue();
+    }
+    emscripten_trace_record_frame_end();
+}
 
 void dispatch_main(void) {
-    emscripten_set_main_loop(_dispatch_em_handle_queue, 0, true);
+    emscripten_set_main_loop(_dispatch_em_handle_queue_with_autoreleasepool, 0, true);
 }
 
 void dispatch_after(dispatch_time_t when, dispatch_queue_t queue, dispatch_block_t block) {
