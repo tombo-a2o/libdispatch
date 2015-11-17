@@ -3,7 +3,7 @@ PRIVATE_HEADERS = $(wildcard src/*.h)
 PUBLIC_HEADERS = $(wildcard include/**/*.h)
 HEADERS = $(PUBLIC_HEADERS) $(PRIVATE_HEADERS)
 
-BUILD = build
+BUILD = build/debug
 
 STATIC_LIB = $(BUILD)/libdispatch.a
 LIB = $(BUILD)/libdispatch.bc
