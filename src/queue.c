@@ -71,6 +71,13 @@ static void _dispatch_em_handle_queue_with_autoreleasepool(void) {
         _dispatch_em_handle_queue();
     }
     emscripten_trace_record_frame_end();
+#if defined(__EMSCRIPTEN_TRACING__)
+    static unsigned int frames = 0;
+    if(frames % 100 == 0) {
+        emscripten_trace_report_memory_layout();
+    }
+    frames++;
+#endif
 }
 
 void dispatch_main(void) {
@@ -95,7 +102,7 @@ void dispatch_barrier_sync(dispatch_queue_t queue, void (^block)(void)) {
 void * dispatch_get_specific(const void *key) {
     return dispatch_queue_get_specific(dispatch_get_current_queue(), key);
 }
-        
+
 // Implemented by js native
 // dispatch_async_f
 // dispatch_sync_f
