@@ -93,3 +93,11 @@ struct dispatch_group_s {
     uint32_t object_id;
     uint32_t suspend_cnt;
 };
+
+struct dispatch_queue_attr_s {
+    id isa;
+};
+
+struct dispatch_data_s {
+    id isa;
+};

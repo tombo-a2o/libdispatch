@@ -1,6 +1,8 @@
 #include "internal.h"
 #include <emscripten/trace.h>
 
+struct dispatch_queue_attr_s _dispatch_queue_attr_concurrent;
+
 @implementation DispatchQueue @end
 
 void dispatch_async(dispatch_queue_t queue, void (^block)(void)) {

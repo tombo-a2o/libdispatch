@@ -9,6 +9,16 @@ const struct dispatch_source_type_s _dispatch_source_type_timer = {
     .internal_type = SOURCE_INTERNAL_TYPE_TIMER
 };
 
+const struct dispatch_source_type_s _dispatch_source_type_read = {
+    .isa = NULL, // TODO
+    .internal_type = 0
+};
+
+const struct dispatch_source_type_s _dispatch_source_type_write = {
+    .isa = NULL, // TODO
+    .internal_type = 0
+};
+
 uint32_t _dispatch_source_create_internal(uint32_t internal_type, uintptr_t handle, unsigned long mask, dispatch_queue_t queue);
 
 dispatch_source_t dispatch_source_create(dispatch_source_type_t type, uintptr_t handle, unsigned long mask, dispatch_queue_t queue) {
