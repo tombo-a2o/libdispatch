@@ -67,9 +67,6 @@ void dispatch_source_set_cancel_handler(dispatch_source_t source, dispatch_block
     _dispatch_source_set_cancel_handler_internal(source, _dispatch_Block_copy(handler), _dispatch_call_block, _dispatch_release_block);
 }
 
-void dispatch_source_cancel(dispatch_source_t source) {
-    printf("*** %s is not implemented.\n", __FUNCTION__);
-}
 long dispatch_source_testcancel(dispatch_source_t source) {
     printf("*** %s is not implemented.\n", __FUNCTION__);
     return 0;
