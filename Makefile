@@ -2,6 +2,7 @@ SOURCES = $(wildcard src/*.c)
 PRIVATE_HEADERS = $(wildcard src/*.h)
 PUBLIC_HEADERS = $(wildcard include/**/*.h)
 HEADERS = $(PUBLIC_HEADERS) $(PRIVATE_HEADERS)
+MODULE_MAP = module.modulemap
 
 BUILD ?= build/debug
 
@@ -37,5 +38,6 @@ install: $(STATIC_LIB)
 	cp $(STATIC_LIB) $(EMSCRIPTEN)/system/local/lib/
 	mkdir -p $(EMSCRIPTEN)/system/local/include/dispatch
 	cp $(PUBLIC_HEADERS) $(EMSCRIPTEN)/system/local/include/dispatch/
+	cp $(MODULE_MAP) $(EMSCRIPTEN)/system/local/include/dispatch/
 
 .PHONY: all clean install
