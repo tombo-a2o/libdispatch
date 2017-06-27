@@ -26,7 +26,7 @@
 #include <dispatch/base.h> // for HeaderDoc
 #endif
 
-#if TARGET_OS_MAC
+#if TARGET_OS_MAC && !TARGET_OS_EMSCRIPTEN
 #include <mach/port.h>
 #include <mach/message.h>
 #endif
