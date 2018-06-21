@@ -2,7 +2,7 @@ How to build on emscripten
 ==========================
 
 cd {somewhere}
-git clone git@github.com:tomboinc/libdispatch.git
+git clone git@github.com:tombo-a2o/libdispatch.git
 cd libdispatch
 git checkout feature/emscripten
 
